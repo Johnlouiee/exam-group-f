@@ -31,4 +31,26 @@ router.post('/exams', (req, res) => {
   exams.push(newExam);
   res.status(201).json(newExam);
 });
+
+router.put('/exams/:id', (req, res) => {
+  const examId = parseInt(req.params.id);
+  const examIndex = exams.findIndex(exam => exam.id === examId);
+
+  if (examIndex === -1) {
+    return res.status(404).json({ error: "Exam not found" });
+  }
+
+  const updatedExam = {
+    ...exams[examIndex],
+    name: req.body.name || exams[examIndex].name,
+    email: req.body.email || exams[examIndex].email
+  };
+
+  if (!updatedExam.name || !updatedExam.email) {
+    return res.status(400).json({ error: "Name and email are required" });
+  }
+
+  exams[examIndex] = updatedExam;
+  res.json(updatedExam);
+});
 module.exports = router;
