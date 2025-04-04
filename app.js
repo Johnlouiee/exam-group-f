@@ -1,18 +1,17 @@
 const express = require('express');
 const app = express();
+const port = process.env.PORT || 3000;
 
+// Middleware to parse JSON requests
 app.use(express.json());
 
-const examRoutes = require('./routes/examGroup');
-app.use('/api', examRoutes);
+// Import routes
+const examRoutes = require('./routes/exam-group');
 
-// Hardcoded list of users
-const users = [
-    { id: 1, name: 'Alice', role: 'Student' },
-    { id: 2, name: 'Bob', role: 'Teacher' },
-    { id: 3, name: 'Charlie', role: 'Admin' }
-];
+// Use routes
+app.use('/exam-group', examRoutes);
 
+<<<<<<< HEAD
 // GET /exams endpoint
 app.get('/api/exams', (req, res) => {
     res.json(users);
@@ -35,4 +34,9 @@ app.post('/api/exams', (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+=======
+// Start server
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+>>>>>>> af14bd4c5c19ce6ec0b0457331d8976567146eeb
 });
