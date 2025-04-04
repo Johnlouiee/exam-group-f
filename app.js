@@ -18,6 +18,20 @@ app.get('/api/exams', (req, res) => {
     res.json(users);
 });
 
+// Array to store exams
+const exams = [];
+
+// POST /exams endpoint - Adds a new exam
+app.post('/api/exams', (req, res) => {
+    const newExam = req.body;
+    
+    // Generate an ID for the new exam
+    newExam.id = exams.length + 1;
+    
+    exams.push(newExam);
+    res.json({ message: 'Exam added', exam: newExam });
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
