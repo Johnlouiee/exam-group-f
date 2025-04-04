@@ -3,7 +3,7 @@ const router = express.Router();
 
 // GET /exam-group
 router.get('/', (req, res) => {
-  res.json({ message: "Group example API" });  // Replace 'example' with your group name
+  res.json({ message: "Group F API" });  
 });
 
 module.exports = router;
